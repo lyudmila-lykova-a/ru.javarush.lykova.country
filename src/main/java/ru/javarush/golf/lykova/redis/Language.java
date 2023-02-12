@@ -1,0 +1,15 @@
+package ru.javarush.golf.lykova.redis;
+
+import lombok.Getter;
+import lombok.Setter;
+
+import java.math.BigDecimal;
+
+@Getter
+@Setter
+public class Language {
+    private String language;
+    private Boolean official;
+    private BigDecimal percentage;
+
+}
