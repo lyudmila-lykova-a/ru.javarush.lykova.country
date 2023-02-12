@@ -6,27 +6,30 @@ import lombok.Setter;
 import org.hibernate.annotations.Type;
 
 import java.math.BigDecimal;
-import java.util.Objects;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "country_language", schema = "world")
 public class CountryLanguageEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "country_id")
-    private CountryEntity countryEntity;
-
+    @Column(name = "language", nullable = false, length = 30)
     private String language;
 
-    @Column(name = "is_official", columnDefinition = "BIT")
+    @Column(name = "is_official", columnDefinition = "BIT", nullable = false)
     @Type(type = "org.hibernate.type.NumericBooleanType")
-    private Boolean official;
+    private Boolean isOfficial;
 
+    @Column(name = "percentage", nullable = false)
     private BigDecimal percentage;
+
+    @ManyToOne
+    @JoinColumn(name = "country_id", nullable = false)
+    private CountryEntity countryEntity;
+
 }

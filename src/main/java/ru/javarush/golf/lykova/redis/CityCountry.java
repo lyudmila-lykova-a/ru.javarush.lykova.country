@@ -10,6 +10,7 @@ import java.util.Set;
 @Getter
 @Setter
 public class CityCountry {
+
     private Integer id;
 
     private String name;
