@@ -1,5 +1,6 @@
 package ru.javarush.golf.lykova;
 
+import lombok.extern.slf4j.Slf4j;
 import ru.javarush.golf.lykova.dao.CityDao;
 import ru.javarush.golf.lykova.dao.CountryDao;
 import ru.javarush.golf.lykova.domain.CityEntity;
@@ -7,6 +8,7 @@ import ru.javarush.golf.lykova.redis.CityCountry;
 
 import java.util.List;
 
+@Slf4j
 public class CompareRelationalDbWithRedis {
 
     private final RelationalDb relationalDb;
@@ -37,8 +39,8 @@ public class CompareRelationalDbWithRedis {
         cityDao.testMysqlData(ids);
         long stopMysql = System.currentTimeMillis();
 
-        System.out.printf("%s:\t%d ms\n", "Redis", (stopRedis - startRedis));
-        System.out.printf("%s:\t%d ms\n", "MySQL", (stopMysql - startMysql));
+        log.info(String.format("Redis:\t%d ms", (stopRedis - startRedis)));
+        log.info(String.format("MySQL:\t%d ms", (stopMysql - startMysql)));
     }
 
 }

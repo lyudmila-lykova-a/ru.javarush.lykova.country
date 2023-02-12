@@ -6,10 +6,12 @@ import io.lettuce.core.RedisClient;
 import io.lettuce.core.RedisURI;
 import io.lettuce.core.api.StatefulRedisConnection;
 import io.lettuce.core.api.sync.RedisStringCommands;
+import lombok.extern.slf4j.Slf4j;
 import ru.javarush.golf.lykova.redis.CityCountry;
 
 import java.util.List;
 
+@Slf4j
 public class Redis implements AutoCloseable {
 
     private final RedisClient redisClient;
@@ -28,7 +30,7 @@ public class Redis implements AutoCloseable {
     private RedisClient prepareRedisClient() {
         RedisClient redisClient = RedisClient.create(RedisURI.create("localhost", 6379));
         try (StatefulRedisConnection<String, String> connection = redisClient.connect()) {
-            System.out.println("\nConnected to Redis\n");
+            log.info("Connected to Redis");
         }
         return redisClient;
     }
