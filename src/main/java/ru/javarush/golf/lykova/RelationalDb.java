@@ -32,7 +32,6 @@ public class RelationalDb implements AutoCloseable {
     }
 
     private SessionFactory prepareRelationalDb() {
-        final SessionFactory sessionFactory;
         Properties properties = new Properties();
         properties.put(Environment.DIALECT, "org.hibernate.dialect.MySQL8Dialect");
         properties.put(Environment.DRIVER, "com.p6spy.engine.spy.P6SpyDriver");
@@ -43,13 +42,12 @@ public class RelationalDb implements AutoCloseable {
         properties.put(Environment.HBM2DDL_AUTO, "validate");
         properties.put(Environment.STATEMENT_BATCH_SIZE, "100");
 
-        sessionFactory = new Configuration()
+        return new Configuration()
                 .addAnnotatedClass(CityEntity.class)
                 .addAnnotatedClass(CountryEntity.class)
                 .addAnnotatedClass(CountryLanguageEntity.class)
                 .addProperties(properties)
                 .buildSessionFactory();
-        return sessionFactory;
     }
 
 }
